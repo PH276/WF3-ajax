@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ajax</title>
+</head>
+<body>
+    <h2>AJAX GET</h2>
+    <div id="demo"></div>
+
+    <button type="button" id="action">Change Content</button>
+
+    <script type="text/javascript">
+    document.getElementById("action").addEventListener("click", loadDoc);
+    function loadDoc(){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "ajax_info.txt", true);
+        xhttp.send();
+        xhttp.onreadystatechange = function(){
+            if (xhttp.readyState == 4 && xhttp.status == 200){
+                document.getElementById("demo").innerHTML = xhttp.responseText;
+            }
+        }
+        /*
+        readyState :
+        Code	État	Description
+        0	UNSENT	L'objet est prêt, mais la méthode open() n'a pas encore été appelé.
+        1	OPENED	open() à été appelé.
+        2	HEADERS_RECEIVED	send() à été appelé, les headers et status sont disponibles au sein de l'objet.
+        3	LOADING	Réception en cours, les données reçues sont partielles.
+        4	DONE	La requête est terminée.
+        */
+    }
+    </script>
+</body>
+</html>

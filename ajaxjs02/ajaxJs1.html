@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ajax 2</title>
+</head>
+<body>
+    <div id="personne">Guillaume</div>
+    <div id="resultat"></div>
+    <script type="text/javascript">
+    var r = new XMLHttpRequest();
+    var personne = document.getElementById("personne").innerHTML;
+
+
+    // Ajout d'information dans l'objet
+    // var parameters = new FormData();
+    // parameters.append("personne", "Guillaume");
+
+    var parameters = "personne="+personne;
+
+    r.open("POST", "ajaxJs1.php", true);
+    r.setRequestHeader("Content-type",
+    "application/x-www-form-urlencoded");
+    r.send(parameters);
+
+    r.onreadystatechange = function(){
+        if (r.readyState == 4 && r.status == 200){
+            // console.log(r.responseText);
+            var obj = JSON.parse(r.responseText);
+            // console.log(obj['montableau']);
+
+            document.getElementById("resultat").innerHTML = obj['montableau'];
+        }
+    };
+
+    </script>
+</body>
+</html>
